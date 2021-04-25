@@ -21,14 +21,19 @@ public class ListReverse {
         System.out.println("Original List...");
         listActions.print(singlyList);
 
-        SinglyList reverseList = listReverse.getReverse(singlyList);
+        SinglyList reverseListIterative = listReverse.reverseIterative(singlyList);
 
-        System.out.println("List after reversing...");
-        listActions.print(reverseList);
+        System.out.println("List after reversing using iterative method...");
+        listActions.print(reverseListIterative);
+
+        SinglyList reverseListRecursive = listReverse.reverseRecursive(reverseListIterative, reverseListIterative, null);
+
+        System.out.println("List after reversing using recursive method...");
+        listActions.print(reverseListRecursive);
 
     }
 
-    public SinglyList getReverse(SinglyList singlyList) {
+    public SinglyList reverseIterative(SinglyList singlyList) {
 
         SinglyList prev = null;
         SinglyList curr = singlyList;
@@ -41,5 +46,23 @@ public class ListReverse {
             curr = next;
         }
         return prev;
+    }
+
+    public SinglyList reverseRecursive(SinglyList head, SinglyList curr, SinglyList prev) {
+
+        if (head == null) {
+            return head;
+        }
+        if (curr.getNext() == null) {
+            head = curr;
+            curr.setNext(prev);
+            return head;
+        }
+
+        SinglyList nextNode = curr.getNext();
+        curr.setNext(prev);
+        head = reverseRecursive(head, nextNode, curr);
+
+        return head;
     }
 }

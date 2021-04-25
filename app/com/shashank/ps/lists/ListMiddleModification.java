@@ -68,7 +68,7 @@ public class ListMiddleModification {
         SinglyList firstHalf = list;
         SinglyList secondHalf = splitList(list);
 
-        SinglyList reverseList = listReverse.getReverse(secondHalf);
+        SinglyList reverseList = listReverse.reverseIterative(secondHalf);
         SinglyList temp = reverseList;
 
         SinglyList curr = firstHalf;
@@ -85,7 +85,7 @@ public class ListMiddleModification {
             reverseList.setData(reverseList.getData()*2);
         }
 
-        SinglyList reReverseList = listReverse.getReverse(temp);
+        SinglyList reReverseList = listReverse.reverseIterative(temp);
 
         curr.setNext(reReverseList);
 
