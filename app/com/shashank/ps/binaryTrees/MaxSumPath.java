@@ -1,7 +1,7 @@
 package com.shashank.ps.binaryTrees;
 
 /**
- * Program to find the max sum path in a binary tree.
+ * Program to find the max sum path in a binary tree. The code will run in O(n) time complexity.
  */
 public class MaxSumPath {
 
