@@ -4,7 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.PriorityQueue;
+import java.util.Queue;
+
 
 /**
  * Print nodes of a Binary Search Tree in Top Level Order and Reversed Bottom Level Order alternately.
@@ -38,24 +41,18 @@ public class TopBottomAlternateLevelOrder {
         if (root == null) {
             System.out.println("Tree is empty.");
         }
-        PriorityQueue<Pair> low = new PriorityQueue<>(new Comparator<Pair>() {
-            @Override
-            public int compare(Pair o1, Pair o2) {
-                if (o1.getLevel() != o2.getLevel()) {
-                    return o1.getLevel() - o2.getLevel();
-                } else {
-                    return o1.getValue() - o2.getValue();
-                }
+        PriorityQueue<Pair> low = new PriorityQueue<>((o1, o2) -> {
+            if (o1.getLevel() != o2.getLevel()) {
+                return o1.getLevel() - o2.getLevel();
+            } else {
+                return o1.getValue() - o2.getValue();
             }
         });
-        PriorityQueue<Pair> high = new PriorityQueue<>(new Comparator<Pair>() {
-            @Override
-            public int compare(Pair o1, Pair o2) {
-                if (o1.getLevel() != o2.getLevel()) {
-                    return o2.getLevel() - o1.getLevel();
-                } else {
-                    return o2.getValue() - o1.getValue();
-                }
+        PriorityQueue<Pair> high = new PriorityQueue<>((o1, o2) -> {
+            if (o1.getLevel() != o2.getLevel()) {
+                return o2.getLevel() - o1.getLevel();
+            } else {
+                return o2.getValue() - o1.getValue();
             }
         });
 
