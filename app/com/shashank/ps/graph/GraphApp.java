@@ -81,10 +81,12 @@ public class GraphApp {
         if(!graph.containsKey(v1)) {
             addVertex(graph, label1);
         }
-        graph.get(v1).add(v2);
+
         if(!graph.containsKey(v2)) {
             addVertex(graph, label2);
         }
+
+        graph.get(v1).add(v2);
         graph.get(v2).add(v1);
     }
 
