@@ -71,7 +71,7 @@ public class DijkstraAlgorithmApp {
                 List<Edge> edges = new ArrayList<>(graph.get(visited));
                 for (Edge edge: edges) {
                     VertexNode temp = edge.getDestination();
-                    if (!visitedNode.get(edge.getDestination())) {
+                    if (!visitedNode.get(temp)) {
                         if (distanceMap.get(temp) == Integer.MAX_VALUE || distanceMap.get(temp) >= (distanceMap.get(visited) + edge.getWeight())) {
                             distanceMap.replace(temp, distanceMap.get(visited) + edge.getWeight());
                         } else {
