@@ -1,5 +1,7 @@
 package com.shashank.ps.array;
 
+import java.util.Arrays;
+
 /**
  * Program to find duplicates in array without using extra space and in O(n) time.
  * Array size n.
