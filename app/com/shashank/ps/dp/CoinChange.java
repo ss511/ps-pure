@@ -31,6 +31,10 @@ public class CoinChange {
 
         System.out.println("Number of ways: " + ways);
 
+        long waysRecursive = getWaysRecursive(n, c.length, c);
+
+        System.out.println("Number of ways using recursive method: " + waysRecursive);
+
         bufferedReader.close();
     }
 
@@ -49,5 +53,21 @@ public class CoinChange {
             }
         }
         return table[n];
+    }
+
+    private static long getWaysRecursive(int n, int m, int[] c) {
+
+        if (n < 0) {
+            return 0;
+        } else if (n == 0) {
+            return 1;
+        }
+
+        if (m <= 0 && n >= 1) {
+            return 0;
+        }
+
+        return getWaysRecursive(n, m-1, c) + getWaysRecursive(n-c[m-1], m, c);
+
     }
 }
