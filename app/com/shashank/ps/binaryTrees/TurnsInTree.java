@@ -29,7 +29,7 @@ public class TurnsInTree {
 
         int data1 = 50;
         int data2 = 5;
-        System.out.println(treeUtils.findLCA(root, data1, data2).getData());
+        System.out.println("LCA is: " + treeUtils.findLCA(root, 10, 1).getData());
         System.out.println("Number of Turns Between " + data1 + " and " + data2 + " = " + findTurns(root, data1, data2));
 
         data1 = 50;
