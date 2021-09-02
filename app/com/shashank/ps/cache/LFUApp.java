@@ -12,7 +12,7 @@ public class LFUApp {
     public static void main (String[] args) throws IOException {
         int option;
 
-        LFU lru = new LFU(3);
+        LFU lfu = new LFU(3);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         do {
             System.out.println("Choose Option\n" +
@@ -27,16 +27,16 @@ public class LFUApp {
                 case 1:
                     System.out.println("Add Key");
                     int key = Integer.parseInt(br.readLine());
-                    lru.refer(key);
+                    lfu.refer(key);
                     break;
                 case 2:
                     System.out.println("Get Key");
                     key = Integer.parseInt(br.readLine());
-                    System.out.println("Key Present: " + lru.get(key));
+                    System.out.println("Key Present: " + lfu.get(key));
                     break;
                 case 3:
                     System.out.println("Cache Contents Are: \n");
-                    lru.cacheDisplay();
+                    lfu.cacheDisplay();
                     System.out.println();
                     break;
                 case 4:
