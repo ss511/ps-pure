@@ -23,7 +23,6 @@ output = 0
 */
 
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -32,28 +31,39 @@ import java.util.Map;
 
 public class TaskCyclesCounter {
     public static void main(String[] args) {
-        System.out.println("Hello, World");
-        //List<Integer> tasks = Arrays.asList(5, 5, 3, 3, 5);
-        List<Integer> tasks = Arrays.asList(1,2,3,1);
-        System.out.println(getExecutionPlan(tasks, 2));
+        List<Integer> tasks = Arrays.asList(5, 5, 3, 3, 5);
+        //List<Integer> tasks = Arrays.asList(1,2,3,1);
+        int coolDown = 3;
+        System.out.println(getExecutionPlan(tasks, coolDown));
     }
 
-    static int getExecutionPlan(List<Integer> tasks, int cooldown) {
-        if ( cooldown <= 0 ) { return tasks.size(); }
-
-        Map<Integer, Integer> lastTimeSlot = new HashMap<>();
-        int result = 0;
-        int taskIndex = 0;
-
-        while ( taskIndex < tasks.size() ) {
-            Integer task = tasks.get(taskIndex);
-            Integer last = lastTimeSlot.get(task);
-            if ( last == null || result - last > cooldown ) {
-                lastTimeSlot.put(task, result);
-                taskIndex++;
-            }
-            result++;
+    static int getExecutionPlan(List<Integer> tasks, int coolDown) {
+        if (tasks == null) {
+            return 0;
         }
+        int size = tasks.size();
+        if (size <= 1) {
+            return size;
+        }
+
+        if (coolDown <= 0) {
+            return size;
+        }
+
+        int result = 1;
+        Map<Integer, Integer> counters = new HashMap<>();
+        counters.put(tasks.get(0), 0);
+        int counter = 1;
+
+        while (counter < size) {
+            if ((!counters.containsKey(tasks.get(counter))) ||
+                    (counters.containsKey(tasks.get(counter)) && (result - coolDown) > counters.get(tasks.get(counter)))) {
+                counters.put(tasks.get(counter), result);
+                counter++;
+            }
+            result ++;
+        }
+
 
         return result;
     }
