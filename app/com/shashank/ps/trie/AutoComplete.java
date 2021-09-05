@@ -7,9 +7,9 @@ import java.util.List;
  * Auto Complete suggestion based on prefix.
  */
 public class AutoComplete {
-    static TrieBasicOperations tbo = new TrieBasicOperations();
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
+        TrieBasicOperations tbo = new TrieBasicOperations();
         TrieNode trieNode = new TrieNode();
         tbo.insert(trieNode, "ball");
         tbo.insert(trieNode, "bill");
@@ -38,7 +38,6 @@ public class AutoComplete {
     }
 
     private static void getAutoCompleteSuggestion(TrieNode root, List<String> suggestions) {
-
         if (root != null && root.isWordComplete()) {
             suggestions.add(root.getContent());
         }
@@ -50,8 +49,6 @@ public class AutoComplete {
         for (TrieNode node: root.getChildren().values()) {
             getAutoCompleteSuggestion(node, suggestions);
         }
-
-
     }
 
 }
