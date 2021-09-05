@@ -14,6 +14,6 @@ import java.util.HashMap;
 public class TrieNode {
 
     private HashMap<Character, TrieNode> children = new HashMap<>();
-    private String content;
     private boolean isWordComplete;
+    private String content;
 }

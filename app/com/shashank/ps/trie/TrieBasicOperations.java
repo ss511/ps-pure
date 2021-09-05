@@ -34,7 +34,9 @@ public class TrieBasicOperations {
         TrieNode curr = root;
 
         for (char l: word.toCharArray()) {
+            String content = curr.getContent() == null ? "": curr.getContent();
             curr = curr.getChildren().computeIfAbsent(l, c -> new TrieNode());
+            curr.setContent(content + l);
         }
         curr.setWordComplete(true);
     }
@@ -71,5 +73,17 @@ public class TrieBasicOperations {
             curr = node;
         }
         return true;
+    }
+
+    public TrieNode searchEndNode(TrieNode root, String word) {
+        TrieNode curr = root;
+        for (char l: word.toCharArray()) {
+            TrieNode node = curr.getChildren().get(l);
+            if (node == null) {
+                return node;
+            }
+            curr = node;
+        }
+        return curr;
     }
 }
