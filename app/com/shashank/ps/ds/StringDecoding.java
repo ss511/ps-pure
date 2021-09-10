@@ -1,5 +1,7 @@
 package com.shashank.ps.ds;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Stack;
 
 /**
@@ -10,9 +12,50 @@ import java.util.Stack;
 public class StringDecoding {
 
     public static void main(String[] args) {
+        System.out.println("************* Using Stack ************* ") ;
         System.out.println(getDecodedTextWithStack("a(bc(de){4}e){3}f"));
         System.out.println(getDecodedTextWithStack("a(bcd){3}e"));
-        System.out.println(getDecodedTextWithStack("a(bc(e){0}){3}f"));
+        System.out.println(getDecodedTextWithDeque("a(bc(e){0}){3}f"));
+        System.out.println("************* Using Deque ************* ") ;
+        System.out.println(getDecodedTextWithDeque("a(bc(de){3}e){2}f"));
+        System.out.println(getDecodedTextWithDeque("a(bcd){5}e"));
+        System.out.println(getDecodedTextWithDeque("a(bc(e){0}){1}f"));
+    }
+
+    private static String getDecodedTextWithDeque(String input) {
+        Deque<String> dq = new LinkedList<>();
+
+        int i = 0;
+        int size = input.length();
+
+        while (i < size) {
+            if ((input.charAt(i) >= 'a' && input.charAt(i) <= 'z') ||
+                    (input.charAt(i) >= 'A' && input.charAt(i) <= 'Z') ||
+                    input.charAt(i) == '(' || input.charAt(i) == ')') {
+                dq.add(input.substring(i, ++i));
+            }
+            else if (input.charAt(i) == '{') {
+                int indexOfClose = input.indexOf("}", i+1);
+                int num = Integer.parseInt(input.substring(i+1, indexOfClose));
+                String out;
+                StringBuilder sb = new StringBuilder();
+                while (!"(".equals(out = dq.removeLast())) {
+                    if (!")".equals(out)) {
+                        sb.append(out);
+                    }
+                }
+                dq.add(String.valueOf(sb.reverse()).repeat(Math.max(0, num)));
+                i = indexOfClose+1;
+            }
+            else {
+                i++;
+            }
+        }
+        StringBuilder res = new StringBuilder();
+        while (dq.size() > 0) {
+            res.append(dq.removeFirst());
+        }
+        return res.toString();
     }
 
     private static String getDecodedTextWithStack(String input) {
@@ -52,67 +95,4 @@ public class StringDecoding {
         }
         return res.reverse().toString();
     }
-
-//    public static String getDecodedText(String input) {
-//
-//        Stack<Character> chars = new Stack<>();
-//        Stack<Integer> nums = new Stack<>();
-//
-//        int i = 0;
-//
-//        StringBuilder sb = new StringBuilder();
-//
-//        char[] letters = input.toCharArray();
-//        while(i < letters.length) {
-//
-//            if (letters[i] == '{') {
-//                i++;
-//                int num = 0;
-//                while (letters[i] != '}') {
-//                    num = num * 10 + letters[i] - '0';
-//                    i++;
-//                }
-//                nums.push(num);
-//            } else {
-//                chars.push(letters[i]);
-//            }
-//            i++;
-//        }
-//
-//        while (!nums.isEmpty()) {
-//            int n = nums.pop();
-//            char ch = chars.pop();
-//            while (ch != ')') {
-//                sb.append(ch);
-//                ch = chars.pop();
-//            }
-//            StringBuilder temp = new StringBuilder();
-//            int repeat = 0;
-//            while (repeat >= 0) {
-//                Character c = chars.pop();
-//                if (c == ')') {
-//                    repeat++;
-//                } else if (c == '(') {
-//                    repeat--;
-//                }
-//                if (repeat >= 0) {
-//                    temp.append(c);
-//                }
-//            }
-//            sb.append(String.valueOf(temp).repeat(Math.max(0, n)));
-//            String newSet = sb.reverse().toString();
-//            for(char c1: newSet.toCharArray()) {
-//                chars.push(c1);
-//            }
-//            sb = new StringBuilder();
-//        }
-//
-//        StringBuilder result = new StringBuilder();
-//
-//        while(!chars.isEmpty()) {
-//            result.append(chars.pop());
-//        }
-//        return result.reverse().toString();
-//    }
-
 }
