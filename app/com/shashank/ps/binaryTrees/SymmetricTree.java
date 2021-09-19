@@ -20,6 +20,7 @@ public class SymmetricTree {
         treeUtils.insert(40, root);
 
         System.out.println("Is the tree Symmetric: " + isSymmetric(root));
+        System.out.println("Is the tree mirror: " + isSymmetricAndMirror(root));
     }
 
     private static boolean isSymmetric(Tree root) {
@@ -73,5 +74,22 @@ public class SymmetricTree {
         rightTraverse(node.getLeft(), directions);
         rightTraverse(node.getRight(), directions);
         return directions;
+    }
+
+    //Below methods will work if tree is symmetric and perfect mirror image of left and right.
+
+    private static boolean isSymmetricAndMirror(Tree root) {
+        return isMirror(root, root);
+    }
+
+    private static boolean isMirror(Tree node1, Tree node2) {
+        if (node1 == null && node2 == null) {
+            return true;
+        }
+
+        if (node1 != null && node2 != null && node1.getData() == node2.getData()) {
+            return isMirror(node1.getLeft(), node2.getRight()) && isMirror(node1.getRight(), node2.getLeft());
+        }
+        return false;
     }
 }
