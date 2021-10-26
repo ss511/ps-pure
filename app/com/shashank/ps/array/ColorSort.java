@@ -13,7 +13,7 @@ public class ColorSort {
         System.out.println("Colors before sorting: ");
         System.out.println(Arrays.toString(colors));
         sortedColors(colors);
-        System.out.println("Colors before sorting: ");
+        System.out.println("Colors after sorting: ");
         System.out.println(Arrays.toString(colors));
     }
 
