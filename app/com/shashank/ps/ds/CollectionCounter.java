@@ -2,6 +2,7 @@ package com.shashank.ps.ds;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,16 +17,26 @@ public class CollectionCounter {
 
         List<String> texts = Arrays.asList(text.split(" "));
 
+        Map<String, Long> wm = new HashMap<>();
+        for (String s : texts) {
+            wm.putIfAbsent(s, 1L);
+            wm.computeIfPresent(s, (key, val) -> val + 1);
+        }
+
+        for (Map.Entry<String, Long> wme : wm.entrySet()) {
+            System.out.println(wme.getKey() + " " + wme.getValue());
+        }
+
         //Collects word count in a map.
         Map<String, Long> wordMap = texts.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         Map<String, Long> sortedWordMap = wordMap.entrySet()
-                        .stream()
-                        .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-                                .collect(Collectors.toMap(
-                                        Map.Entry::getKey,
-                                        Map.Entry::getValue,
-                                        (e1, e2) -> e1, LinkedHashMap::new
-                                ));
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1, LinkedHashMap::new
+                ));
 
         System.out.println("Word Map=======================================");
         wordMap.forEach((key, value) -> {
@@ -46,5 +57,6 @@ public class CollectionCounter {
 
         System.out.println("Sorted Word List in Ascending Order is: ");
         Stream.of(sortedWords).forEach(System.out::println);
+
     }
 }
