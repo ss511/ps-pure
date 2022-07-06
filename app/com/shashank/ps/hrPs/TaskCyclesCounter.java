@@ -56,7 +56,7 @@ public class TaskCyclesCounter {
         int counter = 1;
 
         while (counter < size) {
-            if ((!counters.containsKey(tasks.get(counter))) ||
+            if ((!counters.containsKey(tasks.get(counter)))  ||
                     (counters.containsKey(tasks.get(counter)) && (result - coolDown) > counters.get(tasks.get(counter)))) {
                 counters.put(tasks.get(counter), result);
                 counter++;
