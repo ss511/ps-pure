@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -43,6 +46,9 @@ public class IntStreamDemo {
         userStream()
                 .filter(u -> intNumberStream().anyMatch(i -> i == u.getId() ))
                 .forEach(System.out::println);
+
+        List<User> users = userStream().sorted(Comparator.comparing(User::getFirsName).thenComparing(User::getId, Comparator.reverseOrder())).collect(Collectors.toList());
+        System.out.println(users);
     }
 
     public static Stream<Integer> intNumberStream() {
@@ -54,7 +60,7 @@ public class IntStreamDemo {
                 new User(2, "Lionel", "Messi"),
                 new User(4, "Peter", "Parker"),
                 new User(5, "Robert", "Johnson"),
-                new User(6, "Mike", "Harrison"),
+                new User(6, "Lionel", "Harrison"),
                 new User(8, "Nikki", "Wiesz"),
                 new User(9, "Judy", "Bella"),
                 new User(10, "Isa", "Issac")
