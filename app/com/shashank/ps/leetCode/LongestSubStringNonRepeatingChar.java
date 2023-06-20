@@ -3,6 +3,11 @@ package com.shashank.ps.leetCode;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Program to find the longest substring in a string with non-repeating characters.
+ * Example:
+ * bbtablud -> 6 (tablud)
+ */
 public class LongestSubStringNonRepeatingChar {
 
     public static void main(String[] args) {
