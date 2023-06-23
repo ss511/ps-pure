@@ -19,7 +19,7 @@ public class GroupAnagrams {
         String[] strs2 = {"a", "b"};
         System.out.println(groupAnagrams(strs1));
         System.out.println(groupAnagrams(strs2));
-    }g
+    }
 
     private static List<List<String>> groupAnagrams(String[] strs) {
         Map<String, List<String>> anagram = new HashMap<>();
