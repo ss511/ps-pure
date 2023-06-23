@@ -1,4 +1,4 @@
-package com.shashank.ps.leetCode;
+package com.shashank.ps.leetCodeMedium;
 
 /**
  * Program to find longest palindromic substring in a string.

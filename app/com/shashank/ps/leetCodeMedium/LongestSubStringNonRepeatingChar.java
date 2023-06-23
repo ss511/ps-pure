@@ -1,4 +1,4 @@
-package com.shashank.ps.leetCode;
+package com.shashank.ps.leetCodeMedium;
 
 import java.util.HashMap;
 import java.util.Map;
