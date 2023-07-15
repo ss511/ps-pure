@@ -1,4 +1,4 @@
-package com.shashank.ps.dp;
+package com.shashank.ps.leetCodeMedium;
 
 /**
  * The count-and-say sequence is a sequence of digit strings defined by the recursive formula.

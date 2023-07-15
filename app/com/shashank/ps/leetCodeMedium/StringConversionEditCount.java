@@ -1,4 +1,4 @@
-package com.shashank.ps.dp;
+package com.shashank.ps.leetCodeMedium;
 
 /**
  * Given two Strings find minimum number of operations that can be performed to convert first string to second.
