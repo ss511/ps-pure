@@ -14,7 +14,6 @@ package com.shashank.ps.leetCodeMedium;
  *
  * Example 3:
  * Input: head = [3,5], left = 1, right = 2
- * Output: [5,3]
  */
 public class RangeReverseLinkedList {
     public static void main(String[] arg) {
