@@ -8,12 +8,15 @@ import lombok.ToString;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Fetch list of availability for user based on already scheduled appointments.
+ * The user will have a work start and end time.
+ * Two methods - One just returns all free windows, second one compares the meeting duration needed.
+ */
 public class CalendarAvailability {
     public static void main(String[] args) {
         List<Schedule> appointments = new ArrayList<>();
